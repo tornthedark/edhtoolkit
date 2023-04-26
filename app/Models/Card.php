@@ -10,7 +10,12 @@ class Card extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['deckbuilder_id', 'collection_id', 'deck_id'];
+    protected $fillable = [
+        'deckbuilder_id',
+        'collection_id',
+        'deck_id',
+        'scryfall_id'
+    ];
 
     public function deckbuilder(): BelongsTo
     {
@@ -21,6 +26,13 @@ class Card extends Model
     {
         $this->belongsTo(Collection::class);
     }
+
+    public function scryfall()
+    {
+        $this->belongsTo(\App\Models\Scryfall\Models\Card::class);
+    }
+
+
 
 
 

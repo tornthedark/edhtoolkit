@@ -29,6 +29,6 @@ Route::resource('deckbuilders', \App\Http\Controllers\DeckbuilderController::cla
 
 Route::resource('collections', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
 
-Route::resource('cards', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
+Route::resource('cards', \App\Http\Controllers\CardController::class)->only(['index', 'store']);
 
 

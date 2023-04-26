@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
@@ -13,7 +14,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        dd('test10');
     }
 
     /**
@@ -23,7 +24,7 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -34,7 +35,23 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'deckbuilder_id'    => 'required|exists:deckbuilders,id',
+            'collection_id'     => 'sometimes|exists:collections,id',
+            'deck_id'           => 'sometimes|exists:decks, id',
+            'scryfall_id'       => 'sometimes|exists:scryfall_cards,scryfall_id'
+        ]);
+
+        $card = Card::create([
+            'deckbuilder_id'    => $request->get('deckbuilder_id'),
+            'collection_id'     => $request->get('collection_id'),
+            'deck_id'           => $request->get('deck_id'),
+            'scryfall_id'       => $request->get('scryfall_id'),
+        ]);
+
+        $card->save();
+
+        return $card;
     }
 
     /**

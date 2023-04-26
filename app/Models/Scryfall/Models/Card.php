@@ -2,14 +2,19 @@
 
 namespace App\Models\Scryfall\Models;
 
-class Card
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Card extends Model
 {
+    use HasFactory;
 
-    protected $client;
+    protected $table = [
+        'scryfall_id',
+        'oracle_id',
+        'name'
+    ];
 
-    public function __construct()
-    {
 
-    }
 
 }
