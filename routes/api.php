@@ -28,3 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('deckbuilders', \App\Http\Controllers\DeckbuilderController::class)->only(['index', 'store']);
 
 Route::resource('collections', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
+
+Route::resource('cards', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
+
+
