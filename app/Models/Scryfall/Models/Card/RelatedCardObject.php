@@ -2,7 +2,18 @@
 
 namespace App\Models\Scryfall\Models\Card;
 
-class RelatedCardObject
+use App\Models\Scryfall\Models\Card;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class RelatedCardObject extends Model
 {
+    use HasFactory;
+
+    public function scryfall_card(): BelongsTo
+    {
+        return $this->belongsTo(Card::class, 'scryfall_id', 'scryfall_id');
+    }
 
 }
