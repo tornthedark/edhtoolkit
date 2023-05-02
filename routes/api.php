@@ -24,11 +24,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// scryfall
+Route::resource('scryfall/sets', \App\Http\Controllers\Scryfall\SetController::class)->only('index', 'show');
+
+//Route::get('/scryfall/cards/search', [\App\Http\Controllers\Scryfall\CardController::class, 'search']);
+
 
 Route::resource('deckbuilders', \App\Http\Controllers\DeckbuilderController::class)->only(['index', 'store']);
-
 Route::resource('collections', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
-
 Route::resource('cards', \App\Http\Controllers\CardController::class)->only(['index', 'store']);
 
 

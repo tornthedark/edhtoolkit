@@ -14,7 +14,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        dd('test10');
+        return Card::all();
     }
 
     /**
