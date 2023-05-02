@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Scryfall\SetController;
+use App\Http\Controllers\Scryfall\AutoCompleteController;
+
+use App\Http\Controllers\DeckbuilderController;
+use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +31,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // scryfall
-Route::resource('scryfall/sets', \App\Http\Controllers\Scryfall\SetController::class)->only('index', 'show');
+Route::resource('scryfall/sets', SetController::class)->only('index', 'show');
+Route::resource('scryfall/cards', SetController::class)->only('index', 'show');
 
-//Route::get('/scryfall/cards/search', [\App\Http\Controllers\Scryfall\CardController::class, 'search']);
+Route::get('scryfall/autocomplete/cards', [AutoCompleteController::class, 'cardsAutocomplete']);
 
-
-Route::resource('deckbuilders', \App\Http\Controllers\DeckbuilderController::class)->only(['index', 'store']);
-Route::resource('collections', \App\Http\Controllers\CollectionController::class)->only(['index', 'store']);
-Route::resource('cards', \App\Http\Controllers\CardController::class)->only(['index', 'store']);
+// EDHtoolkit
+Route::resource('deckbuilders', DeckbuilderController::class)->only(['index', 'store']);
+Route::resource('collections', CollectionController::class)->only(['index', 'store']);
+Route::resource('cards', CardController::class)->only(['index', 'store']);
 
 

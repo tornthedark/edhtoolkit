@@ -11,10 +11,21 @@ use Illuminate\Http\Request;
 
 class CardController extends BaseScryfallController
 {
-    public function test()
+    // TODO: check for pagination
+    public function index()
     {
 
     }
 
+    public function show()
+    {
+
+    }
+
+    public function autocomplete()
+    {
+        dd('autocomplete');
+
+    }
 
 }
