@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class SetTransformer
 {
-    public static function transform($item)
+    public static function transform(Array $item)
     {
         return new Set([
             'scryfall_id'   => data_get($item, 'id'),

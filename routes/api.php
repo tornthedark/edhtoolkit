@@ -3,11 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Scryfall\SetController;
+use App\Http\Controllers\Scryfall\CardController;
 use App\Http\Controllers\Scryfall\AutoCompleteController;
 
 use App\Http\Controllers\DeckbuilderController;
 use App\Http\Controllers\CollectionController;
-use App\Http\Controllers\CardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +32,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // scryfall
 Route::resource('scryfall/sets', SetController::class)->only('index', 'show');
-Route::resource('scryfall/cards', SetController::class)->only('index', 'show');
+Route::resource('scryfall/cards', CardController::class)->only('index', 'show');
 
 Route::get('scryfall/autocomplete/cards', [AutoCompleteController::class, 'cardsAutocomplete']);
 

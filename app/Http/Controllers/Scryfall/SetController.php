@@ -20,10 +20,11 @@ class SetController extends BaseScryfallController
             $sets = [];
             foreach($body['data'] as $item) {
                 /** @var Set $set */
-                $set = SetTransformer::transform($item);
+                $set = Set::where('scryfall_id', data_get($item, 'id'))->first();
 
-                if(!$set->exists) {
+                if(!$set) {
                     try {
+                        $set = SetTransformer::transform($item);
                         $set->save();
                     } catch (\Exception $e) {
                         report($e);
@@ -35,7 +36,7 @@ class SetController extends BaseScryfallController
 
             return response($sets, 200);
         } else {
-            return response(['message' => $response->clientError()], 500);
+            return response(['message' => $response->reason()], 500);
         }
     }
 
@@ -49,10 +50,11 @@ class SetController extends BaseScryfallController
             $body = json_decode($response->body(), true);
 
             /** @var Set $set */
-            $set = SetTransformer::transform($body);
+            $set = Set::where('scryfall_id', data_get($body, 'id'))->first();
 
             if(!$set->exists) {
                 try {
+                    $set = SetTransformer::transform($body);
                     $set->save();
                 } catch (\Exception $e) {
                     report($e);
@@ -61,7 +63,7 @@ class SetController extends BaseScryfallController
 
             return response($set, 200);
         } else {
-            return response(['message' => $response->clientError()], 500);
+            return response(['message' => $response->reason()], 500);
         }
     }
 }
