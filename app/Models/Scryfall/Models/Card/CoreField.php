@@ -30,6 +30,12 @@ class CoreField extends Model
         'uri'
     ];
 
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at'
+    ];
+
     public function scryfall_card(): BelongsTo
     {
         return $this->belongsTo(Card::class, 'scryfall_id', 'scryfall_id');

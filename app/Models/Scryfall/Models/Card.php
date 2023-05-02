@@ -20,6 +20,20 @@ class Card extends Model
         'name'
     ];
 
+    protected $hidden = [
+       'id',
+       'created_at',
+       'updated_at'
+    ];
+
+    public function getFieldsAttribute($value)
+    {
+        $fields = [];
+        $core_fields = $this->core_fields()->first()->toArray();
+
+        return array_merge($fields, $core_fields);
+   }
+
     public function core_fields(): HasOne
     {
         return $this->hasOne(CoreField::class, 'scryfall_id', 'scryfall_id');

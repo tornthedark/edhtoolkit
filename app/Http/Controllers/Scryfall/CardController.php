@@ -27,6 +27,7 @@ class CardController extends BaseScryfallController
 
         if($response->successful()) {
             $body = json_decode($response->body(), true);
+
             $scryfall_id = data_get($body, 'id');
             $card = Card::where('scryfall_id', $scryfall_id)->with(['core_fields'])->first();
 
@@ -46,7 +47,7 @@ class CardController extends BaseScryfallController
                 }
             }
 
-            return response($card, 200);
+            return response($card->fields, 200);
         } else {
             return response(['message' => $response->reason()], 500);
         }
